@@ -41,44 +41,6 @@ class Layout extends Component {
                                 <li className="nav-item active m-1">
                                     <VisibleFileDownloadLink/>
                                 </li>
-                                <li className="nav-item dropdown">
-                                    <a
-                                        onClick={this.setChart}
-                                        className="nav-link dropdown-toggle"
-                                        id="navbarDropdownMenuLink"
-                                        data-toggle="dropdown"
-                                        aria-haspopup="true"
-                                        aria-expanded="false"
-                                        className="btn text-light"
-                                    >
-                                        Wykres
-
-                                    </a>
-                                    <input type="color" id="html5colorpicker" onChange="clickColor(0, -1, -1, 5)"
-                                           value="#ff0000"/>
-                                    <div
-                                        className="dropdown-menu bg-light drop-list"
-                                        aria-labelledby="navbarDropdownMenuLink"
-                                    >
-                                        <a className="dropdown-item" onClick={this.setMain} id="main">
-                                            Utwórz nowy
-                                        </a>
-                                        <a
-                                            className="dropdown-item"
-                                            onClick={this.props.onChange}
-                                            id="save"
-                                        >
-                                            Zapisz
-                                        </a>
-                                        <a
-                                            className="dropdown-item"
-                                            onClick={this.props.onChange}
-                                            id="open"
-                                        >
-                                            Otwórz
-                                        </a>
-                                    </div>
-                                </li>
                                 <li className="nav-item active m-1">
                                     <Button variant="contained" component="span" color="default"
                                         href="http://nonsensopedia.wikia.com/wiki/Gra:Gra"
@@ -120,7 +82,7 @@ class Layout extends Component {
                                     </Grid>
                                 </Grid>
                                 <Grid item  container spacing={32} justify="center">
-                                    <div>
+                                    <div >
                                         <Paper elevation={8} className="paper m-5">
                                             <VisibleDataSheet/>
                                         </Paper>

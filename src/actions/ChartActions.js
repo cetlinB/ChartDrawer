@@ -6,7 +6,10 @@ import {
     SET_COLOR_BY_INDEX,
     ADD_NEW_EMPTY_DATA_SET,
     ADD_NEW_EMPTY_DATA_TO_EVERY_SET,
-    SET_CHART_TYPE, SET_DATA_LABEL
+    SET_CHART_TYPE, SET_DATA_LABEL,
+    REMOVE_SERIES,
+    REMOVE_ROW
+
 } from "../constants/ChartActionTypes";
 
 export const setPureData = (dataList) => ({
@@ -57,3 +60,13 @@ export const setDataLabel = (newLabel, dataSetIndex, dataIndex) => ({
     dataSetIndex,
     dataIndex
 });
+
+export const removeSeries = (dataSetIndex) => ({
+    type: REMOVE_SERIES,
+    dataSetIndex
+});
+
+export const  removeRovFromEverySet = (dataIndex) => ({
+    type: REMOVE_ROW,
+    dataIndex
+})

@@ -5,7 +5,9 @@ import {
     addNewEmptyDataToEverySet,
     setColorByIndex,
     setLabelByIndex,
-    setNewDataByDataSetIndex
+    setNewDataByDataSetIndex,
+    removeSeries,
+    removeRovFromEverySet
 } from "../actions/ChartActions";
 import {deepCopyObject} from "../utils/utils";
 
@@ -19,7 +21,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     setColorByIndex: (newColor, dataSetIndex) => dispatch(setColorByIndex(newColor, dataSetIndex)),
     addNewEmptyDataSet: () => dispatch(addNewEmptyDataSet()),
     addNewEmptyDataToEverySet: () => dispatch(addNewEmptyDataToEverySet()),
-    addNewDataByDataSetIndex: (newData, dataSetIndex, dataIndex) => dispatch(setNewDataByDataSetIndex(newData, dataSetIndex, dataIndex))
+    addNewDataByDataSetIndex: (newData, dataSetIndex, dataIndex) => dispatch(setNewDataByDataSetIndex(newData, dataSetIndex, dataIndex)),
+    removeSeries: (dataSetIndex) => dispatch(removeSeries(dataSetIndex)),
+    removeRovFromEverySet: (dataIndex) =>  dispatch(removeRovFromEverySet(dataIndex))
 });
 
 export default connect(

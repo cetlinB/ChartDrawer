@@ -56,9 +56,7 @@ const options = {
 };
 
 class MyLineChart extends Component {
-    constructor(props){
-        super(props);
-    }
+
     render () {
         return (
             <HighchartsReact

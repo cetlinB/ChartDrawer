@@ -5,6 +5,9 @@ import Input from "@material-ui/core/Input/Input";
 import {MdAddCircleOutline} from "react-icons/md";
 import Typography from "@material-ui/core/Typography/Typography";
 import {isPointValid} from "../utils/utils";
+import '../styles.css';
+//import Button from "../containers/VisibleUndoButton";
+import Button from "@material-ui/core/Button/Button"
 
 const nonDataRows = 3;
 
@@ -28,15 +31,15 @@ class MyDataSheet extends Component {
             } else {
                 const setIndex = Math.floor(col / 2);
                 const dataIndex = row - 3;
-                const newData = this.props.dataSets.series[setIndex].data;
+                const newData = this.props.dataSets.series[setIndex].data[dataIndex];
 
                 if (col % 2) {
-                    newData.y = value;
+                    newData[1] = Number(value);
                 } else {
-                    newData.x = value;
+                    newData[0] = Number(value);
                 }
 
-                newData.valid = isPointValid(newData);
+                console.log((newData));
 
                 this.props.addNewDataByDataSetIndex(newData, setIndex, dataIndex);
             }
@@ -47,13 +50,13 @@ class MyDataSheet extends Component {
 
         const colPointLength =  this.props.dataSets.series.length;
         const rowPointLength = colPointLength > 0 ? this.props.dataSets.series[0].data.length : 0;
-        console.log(rowPointLength);
 
         //LABEL ROW
         let grid = [
             this.props.dataSets.series.map( set => (
                 {
-                    value: set.name,
+                    component:(<LabelColorCell text={set.name} color={set.color} setColorByIndex={this.props.setColorByIndex} index={set.index}/>),
+                    forceComponent: true,
                     className: "cell-label",
                     colSpan: 2
                 })),
@@ -65,16 +68,15 @@ class MyDataSheet extends Component {
 
         //COLOR ROW
         grid.push(
-            this.props.dataSets.series.map( set => (
-                {
-                    component: (<Input type="color"
-                                       value={set.color}
-                                       fullWidth={true}
-                                       onChange={ event=>this.props.setColorByIndex(event.target.value, set.index)}/>),
+            this.props.dataSets.series.map( set => ({
+                    component: (<button onClick={() => this.props.removeSeries(set.index)}>
+                                 Usuń
+                                </button>),
                     forceComponent: true,
                     readOnly: true,
                     colSpan: 2
-                })
+                }
+            )
             )
         );
 
@@ -116,8 +118,15 @@ class MyDataSheet extends Component {
             component: (<MyAddEmptyDataButton onClick={()=>this.props.addNewEmptyDataToEverySet()} />),
             forceComponent: true,
             readOnly: true,
-            colSpan: 2 * colPointLength
-        }]);
+            colSpan:  colPointLength
+        },{
+            className: "cell-add-button",
+            component: (<MyAddEmptyDataButton onClick={()=>this.props.removeRovFromEverySet()} />),
+            forceComponent: true,
+            readOnly: true,
+            colSpan:  colPointLength
+        }
+        ]);
 
         return grid;
     }
@@ -134,3 +143,100 @@ class MyDataSheet extends Component {
 }
 
 export default MyDataSheet;
+
+class LabelColorCell extends React.Component {
+    render(){
+        return(
+            <div>
+                <Input className="labelBlock" type="text"  value={this.props.text} name="Label"/>
+                <cell>
+                <Input
+                        className="cell-label labelBlock"
+                        type="color"
+                       value={this.props.color}
+                       onChange={ event=>this.props.setColorByIndex(event.target.value, this.props.index)}/>
+                </cell>
+            </div>
+                );
+    }
+}
+
+class ContextMenu extends React.Component {
+    state = {
+        visible: false,
+    };
+
+    componentDidMount() {
+        document.addEventListener('contextmenu', this._handleContextMenu);
+        document.addEventListener('click', this._handleClick);
+        document.addEventListener('scroll', this._handleScroll);
+    };
+
+    componentWillUnmount() {
+        document.removeEventListener('contextmenu', this._handleContextMenu);
+        document.removeEventListener('click', this._handleClick);
+        document.removeEventListener('scroll', this._handleScroll);
+    }
+
+    _handleContextMenu = (event) => {
+        event.preventDefault();
+
+        this.setState({ visible: true });
+
+        const clickX = event.clientX;
+        const clickY = event.clientY;
+        const screenW = window.innerWidth;
+        const screenH = window.innerHeight;
+        const rootW = this.root.offsetWidth;
+        const rootH = this.root.offsetHeight;
+
+        const right = (screenW - clickX) > rootW;
+        const left = !right;
+        const top = (screenH - clickY) > rootH;
+        const bottom = !top;
+
+        if (right) {
+            this.root.style.left = `${clickX + 5}px`;
+        }
+
+        if (left) {
+            this.root.style.left = `${clickX - rootW - 5}px`;
+        }
+
+        if (top) {
+            this.root.style.top = `${clickY + 5}px`;
+        }
+
+        if (bottom) {
+            this.root.style.top = `${clickY - rootH - 5}px`;
+        }
+    };
+
+    _handleClick = (event) => {
+        const { visible } = this.state;
+        const wasOutside = !(event.target.contains === this.root);
+
+        if (wasOutside && visible) this.setState({ visible: false, });
+    };
+
+    _handleScroll = () => {
+        const { visible } = this.state;
+
+        if (visible) this.setState({ visible: false, });
+    };
+
+    render() {
+        const { visible } = this.state;
+
+        return(visible || null) &&
+            <div ref={ref => {this.root = ref}} className="contextMenu">
+                <div className="contextMenu--option">Share this</div>
+                <div className="contextMenu--option">New window</div>
+                <div className="contextMenu--option">Visit official site</div>
+                <div className="contextMenu--option contextMenu--option__disabled">View full version</div>
+                <div className="contextMenu--option">Settings</div>
+                <div className="contextMenu--separator" />
+                <div className="contextMenu--option">About this app</div>
+            </div>
+    };
+}
