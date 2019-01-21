@@ -13,9 +13,6 @@ const initialState = {
         style: {visibility: 'hidden'},
         text: 'My chart'
     },
-    xAxis: {
-        categories: ['Apples', 'Oranges', 'Pears']
-    },
     yAxis: {
         title: {
             text: 'Total fruit consumption'

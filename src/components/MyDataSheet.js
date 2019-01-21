@@ -28,7 +28,7 @@ class MyDataSheet extends Component {
             } else {
                 const setIndex = Math.floor(col / 2);
                 const dataIndex = row - 3;
-                const newData = this.props.dataSets[setIndex].data[dataIndex];
+                const newData = this.props.dataSets.series[setIndex].data;
 
                 if (col % 2) {
                     newData.y = value;
@@ -45,14 +45,15 @@ class MyDataSheet extends Component {
 
     generateGrid() {
 
-        const colPointLength =  this.props.dataSets.length;
-        const rowPointLength = colPointLength > 0 ? this.props.dataSets[0].data.length : 0;
+        const colPointLength =  this.props.dataSets.series.length;
+        const rowPointLength = colPointLength > 0 ? this.props.dataSets.series[0].data.length : 0;
+        console.log(rowPointLength);
 
         //LABEL ROW
         let grid = [
             this.props.dataSets.series.map( set => (
                 {
-                    value: set.label,
+                    value: set.name,
                     className: "cell-label",
                     colSpan: 2
                 })),
@@ -92,8 +93,8 @@ class MyDataSheet extends Component {
             for( let col = 0 ; col < colPointLength ; col++ ){
                 const point = this.props.dataSets.series[col].data[row];
                 pointRow.push(
-                        {value: `${point.x}`, className: point.valid ? "" : "cell-invalid"},
-                        {value: `${point.y}`, className: point.valid ? "" : "cell-invalid"}
+                        {value: `${point[0]}`},
+                        {value: `${point[1]}`}
                         );
             }
 
