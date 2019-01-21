@@ -39,7 +39,7 @@ const initialState = {
         }
     },
     chart: {
-        type: 'map'
+        type: 'scatter'
     },
     series: [{
         index: 0,
