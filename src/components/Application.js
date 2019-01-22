@@ -25,19 +25,19 @@ class Application extends Component {
                     <Toolbar className="bg-dark">
                         <Typography variant={"button"} color="inherit">
                             <ul className="nav navbar-nav-right">
-                                <li className="nav-item active m-1">
+                                <li className="nav-item m-1">
                                     <UndoButtonContainer variant="contained" color="default">COFNIJ</UndoButtonContainer>
                                 </li>
-                                <li className="nav-item active m-1">
+                                <li className="nav-item m-1">
                                     <RedoButtonContainer variant="contained" color="default">POWTÓRZ</RedoButtonContainer>
                                 </li>
-                                <li className="nav-item active m-1">
+                                <li className="nav-item m-1">
                                     <UploadCsvFileContainer/>
                                 </li>
-                                <li className="nav-item active m-1">
+                                <li className="nav-item m-1">
                                     <DownloadCsvContainer/>
                                 </li>
-                                <li className="nav-item active m-1">
+                                <li className="nav-item m-1">
                                     <Button variant="contained" component="span" color="default"
                                         href="http://nonsensopedia.wikia.com/wiki/Gra:Gra"
                                     >

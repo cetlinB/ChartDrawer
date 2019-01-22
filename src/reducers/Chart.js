@@ -1,10 +1,8 @@
 import {deepCopyObject} from "../utils/utils";
-import {SET_CHART_TITLE, SET_CHART_TYPE} from "../constants/ChartActionTypes";
-import {SCATTER_CHART} from "../constants/ChartType";
+import {SET_CHART_TITLE} from "../constants/ChartActionTypes";
 
 const initialState = {
-    title: "MY CHART",
-    type: SCATTER_CHART
+    title: "MY CHART"
 };
 
 export const chart = (state = initialState, action) => {
@@ -12,9 +10,6 @@ export const chart = (state = initialState, action) => {
     switch(action.type){
         case SET_CHART_TITLE:
             newState.title = action.newTitle;
-            return newState;
-        case SET_CHART_TYPE:
-            newState.type = action.newChartType;
             return newState;
         default:
             return newState;
