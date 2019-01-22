@@ -4,10 +4,8 @@ import {
     SET_PURE_DATA, SET_COLOR_BY_INDEX, ADD_NEW_EMPTY_DATA_SET, ADD_NEW_EMPTY_DATA_TO_EVERY_SET, SET_DATA_LABEL,
     SET_CHART_TYPE, SET_CHART_TITLE, REMOVE_SERIES, REMOVE_ROW
 } from "../constants/ChartActionTypes";
-import {AREA_CHART,HORIZONTAL_BAR_CHART,LINE_CHART,PIE_CHART,SCATTER_CHART,VERTICAL_BAR_CHART} from "../constants/ChartType";
 import {DEFAULT_COLOR_LIST} from "../constants/DefaultColorList";
 import {deepCopyObject} from "../utils/utils";
-import Highcharts from "highcharts";
 
 const initialState = {
     plotOptions:{
@@ -58,23 +56,6 @@ export const dataSets = (state = initialState, action) => {
     switch(action.type) {
         case SET_CHART_TYPE:
             newState.chart.type = action.newChartType;
-            switch (action.newChartType) {
-                case AREA_CHART:
-                    newState.stack = true;
-                    break;
-                case VERTICAL_BAR_CHART:
-                    break;
-                case HORIZONTAL_BAR_CHART:
-                    break;
-                case SCATTER_CHART:
-                    break;
-                case PIE_CHART:
-                    break;
-                case LINE_CHART:
-                    break;
-                default:
-                    break;
-            }
             return newState;
         case SET_CHART_TITLE:
             newState.title.text = action.newTitle;
