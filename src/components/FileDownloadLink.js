@@ -5,7 +5,6 @@ import Button from "@material-ui/core/Button";
 class FileDownloadLink extends Component {
 
     encodeCSV() {
-
         let data = [];
         let line = [];
         this.props.dataSets.series.forEach(() => {
@@ -17,16 +16,17 @@ class FileDownloadLink extends Component {
         data.push(line);
         data.push(rowSeparator);
 
-        this.props.dataSets.series.forEach((dataset) => {
+        for (let i = 0; i < this.props.dataSets.series[0].data.length; i++) {
             let row = [];
-            dataset.data.forEach((cell) => {
-                row.push(cell.x);
-                row.push(cell.y);
+
+            this.props.dataSets.series.forEach((dataset) => {
+                row.push(dataset.data[i][0]);
+                row.push(dataset.data[i][1]);
             });
             row.join(cellSeparator);
             data.push(row);
             data.push(rowSeparator);
-        });
+        }
 
         let properties = {type: 'text/plain'};
         let file;
@@ -40,7 +40,7 @@ class FileDownloadLink extends Component {
 
     render() {
         return (
-            <a href={this.encodeCSV()} download="csv_file.csv"><Button variant="contained" color="default">ZAPISZ DANE</Button></a>
+            <a href={this.encodeCSV()} download="csv_file.csv"><Button variant="contained" component="span" color="default">ZAPISZ DANE</Button></a>
         );
     }
 }

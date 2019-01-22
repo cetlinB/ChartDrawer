@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {cellSeparator, rowSeparator} from "../constants/CsvSeparators";
 import Button from "@material-ui/core/Button";
-import {isPointValid} from "../utils/utils";
 
 class FileReaderBtn extends Component {
     constructor(props) {
@@ -26,31 +25,24 @@ class FileReaderBtn extends Component {
     decodeCSV(data) {
         let rows = data.split(rowSeparator);
 
+        rows.splice(0,1);
+
+        rows.splice(rows.length-1,1);
+
         rows = rows.map(row => {
             return row.split(cellSeparator);
         });
 
-        rows.pop();
-
         let readState = [];
-
-        try {
-            rows.splice(0, 1);
-
+        for (let col = 0; col < rows[0].length; col += 2) {
+            let rowPoints = [];
             rows.forEach((row) => {
-                let rowPoints = [];
-                for (let col = 0; col < row.length; col += 2) {
-                    const newPoint = {x: row[col], y: row[col + 1]};
-                    newPoint.valid = isPointValid(newPoint);
-                    rowPoints.push(newPoint);
-                }
-                readState.push(rowPoints);
+                rowPoints.push([Number(row[col]),Number(row[col+1])]);
             });
-
-            this.props.setPureData(readState);
-        } catch (TypeError) {
-            console.error("Wrong CSV format");
+            readState.push(rowPoints);
         }
+            this.props.setPureData(readState);
+
 
     }
 

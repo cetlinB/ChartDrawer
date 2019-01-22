@@ -9,17 +9,13 @@ import Typography from "@material-ui/core/Typography/Typography";
 import AppBar from "@material-ui/core/AppBar/AppBar";
 import Toolbar from "@material-ui/core/Toolbar/Toolbar";
 import Grid from "@material-ui/core/Grid/Grid";
-import ExampleVerticalBarChart from "./exampleCharts/ExampleVerticalBarChart";
-import ExampleHorizontalBarChart from "./exampleCharts/ExampleHorizontalBarChart";
-import ExampleAreaChart from "./exampleCharts/ExampleAreaChart";
-import ExamplePieChart from "./exampleCharts/ExamplePieChart";
-import ExampleLineChart from "./exampleCharts/ExampleLineChart";
-import ExampleScatterChart from "./exampleCharts/ExampleScatterChart";
+import UniversalChartButton from "./exampleCharts/UniversalChartButton";
 import Paper from "@material-ui/core/Paper/Paper";
 import Button from '@material-ui/core/Button/Button';
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap";
-import MyLineChart from "./charts/MyLineChart";
+import "../styles.css";
+
 
 class Layout extends Component {
     render() {
@@ -50,50 +46,57 @@ class Layout extends Component {
                                 </li>
                             </ul>
                         </Typography>
-                        <Typography variant="title" color="inherit" className="align-middle m-1">
+                        <div className="w-50">
+                        </div>
+                        <Typography variant="title" color="inherit" className="float-xl-right m-1">
                             EAZY CHART
                         </Typography>
                     </Toolbar>
                 </AppBar>
-                <Grid container spacing={8} className="under-topbar" justify="center" direction="row">
-                        <Grid item xs={4}>
-                        <aside>
-                            <Grid container spacing={16} justify="center">
-                                <Grid item container spacing={32} justify="center">
-                                    <Grid item>
-                                        <ExampleVerticalBarChart onClick={ () => this.props.setVerticalBarChart() }/>
+                <Grid container spacing={2} className="under-topbar" justify="center" direction="row" alignItems='stretch'>
+                        <Grid item xs={5} alignItems={"center"}>
+                        <aside className="w-100" >
+                            <Grid container spacing={32} justify="center" >
+                                <Grid item container spacing={40} justify="center" alignItems={"center"}>
+                                    <Grid item className="m-auto">
+                                        <UniversalChartButton name={"WYKRES KOLUMNOWY"} onClick={ () => this.props.setVerticalBarChart() }/>
                                     </Grid>
-                                    <Grid item>
-                                        <ExampleHorizontalBarChart onClick={ () => this.props.setHorizontalBarChart() }/>
+                                    <Grid item  className="m-auto">
+                                        <UniversalChartButton name={"WYKRES SŁUPKOWY"} onClick={ () => this.props.setHorizontalBarChart() }/>
                                     </Grid>
-                                    <Grid item>
-                                        <ExampleAreaChart onClick={ () => this.props.setAreaChart() } />
+
+                                </Grid>
+                                <Grid item container spacing={40} justify="center" alignItems={"center"}>
+                                    <Grid item className="m-auto">
+                                        <UniversalChartButton name={"WYKRES LINIOWY"} onClick={ () => this.props.setLineChart() } />
+                                    </Grid>
+                                    <Grid item className="m-auto">
+                                        <UniversalChartButton name={"WYKRES PUNKTOWY"} onClick={ () => this.props.setScatterChart() } />
                                     </Grid>
                                 </Grid>
-                                <Grid item container spacing={32} justify="center">
-                                    <Grid item>
-                                        <ExampleLineChart onClick={ () => this.props.setLineChart() } />
+                                <Grid item container spacing={40} justify="center">
+                                    <Grid item className="m-auto">
+                                        <UniversalChartButton name={"WYKRES PÓL"} onClick={ () => this.props.setAreaChart() } />
                                     </Grid>
-                                    <Grid item>
-                                        <ExampleScatterChart onClick={ () => this.props.setScatterChart() } />
-                                    </Grid>
-                                    <Grid item>
-                                        <ExamplePieChart onClick={ () => this.props.setPieChart() } />
+                                    <Grid item className="m-auto">
+                                        <UniversalChartButton name={"WYKRES KOŁOWY"} onClick={ () => this.props.setPieChart() } />
                                     </Grid>
                                 </Grid>
                                 <Grid item  container spacing={32} justify="center">
-                                    <div >
-                                        <Paper elevation={8} className="paper m-5">
-                                            <VisibleDataSheet/>
+                                    <div className="bg-light w-75 overflow-auto mt-5 Content">
+                                        <Paper elevation={8} className="paper m-3">
+                                            <div className="pre-scrollable" width="20%">
+                                                <VisibleDataSheet/>
+                                            </div>
                                         </Paper>
                                     </div>
                                 </Grid>
                             </Grid>
                         </aside>
                     </Grid>
-                    <Grid item xs={8}>
-                        <main>
-                            <Paper elevation={4} className="paper">
+                    <Grid item xs={7} className="HighChart">
+                        <main >
+                            <Paper elevation={4} className="paper h-auto "  >
                                 <VisibleChart/>
                             </Paper>
                         </main>

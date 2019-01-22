@@ -4,6 +4,24 @@
 }
 
 .labelBlock {
-    display:inline-block;
+    display: inline-block;
     width: 50%;
 }
+
+.Flipped {
+    direction: rtl;
+}
+
+.Content {
+    direction: ltr;
+}
+
+.HighChart {
+    height: available;
+}
+
+.HighTable {
+    height: available;
+}
+
+

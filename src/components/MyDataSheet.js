@@ -2,12 +2,9 @@ import {Component} from "react";
 import React from "react";
 import ReactDataSheet from 'react-datasheet';
 import Input from "@material-ui/core/Input/Input";
-import {MdAddCircleOutline} from "react-icons/md";
+import {MdAdd, MdRemove} from "react-icons/md";
 import Typography from "@material-ui/core/Typography/Typography";
-import {isPointValid} from "../utils/utils";
 import '../styles.css';
-//import Button from "../containers/VisibleUndoButton";
-import Button from "@material-ui/core/Button/Button"
 
 const nonDataRows = 3;
 
@@ -15,9 +12,18 @@ class MyAddEmptyDataButton extends Component {
     render() {
         return (
         <Typography align="center" variant="display1" onClick={()=>this.props.onClick()}>
-            <MdAddCircleOutline />
+            <MdAdd />
         </Typography>
     )};
+}
+
+class MyRemoveDataButton extends Component {
+    render() {
+        return (
+            <Typography align="center" variant="display1" onClick={()=>this.props.onClick()}>
+                <MdRemove />
+            </Typography>
+        )};
 }
 
 class MyDataSheet extends Component {
@@ -55,7 +61,7 @@ class MyDataSheet extends Component {
         let grid = [
             this.props.dataSets.series.map( set => (
                 {
-                    component:(<LabelColorCell text={set.name} color={set.color} setColorByIndex={this.props.setColorByIndex} index={set.index}/>),
+                    component:(<LabelColorCell text={set.name} color={set.color} setColorByIndex={this.props.setColorByIndex} setLabelByIndex={this.props.setLabelByIndex} index={set.index}/>),
                     forceComponent: true,
                     className: "cell-label",
                     colSpan: 2
@@ -121,7 +127,7 @@ class MyDataSheet extends Component {
             colSpan:  colPointLength
         },{
             className: "cell-add-button",
-            component: (<MyAddEmptyDataButton onClick={()=>this.props.removeRovFromEverySet()} />),
+            component: (<MyRemoveDataButton onClick={()=>this.props.removeRovFromEverySet()} />),
             forceComponent: true,
             readOnly: true,
             colSpan:  colPointLength
@@ -148,7 +154,7 @@ class LabelColorCell extends React.Component {
     render(){
         return(
             <div>
-                <Input className="labelBlock" type="text"  value={this.props.text} name="Label"/>
+                <Input className="labelBlock" type="plain/text" value={this.props.text} onChange={(e) => this.props.setLabelByIndex(e.target.value,this.props.index)}/>
                 <cell>
                 <Input
                         className="cell-label labelBlock"

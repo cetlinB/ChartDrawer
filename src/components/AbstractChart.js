@@ -1,37 +1,9 @@
 import React, {Component} from "react";
-import {ReferenceLine, CartesianGrid, Tooltip, Legend} from "recharts";
 import Typography from "@material-ui/core/Typography/Typography";
 import FormControl from "@material-ui/core/FormControl/FormControl";
 import Input from "@material-ui/core/Input/Input";
-import MyVerticalBarChart from "./charts/MyVerticalBarChart";
-import {
-    VERTICAL_BAR_CHART,
-    LINE_CHART,
-    SCATTER_CHART,
-    PIE_CHART,
-    AREA_CHART,
-    HORIZONTAL_BAR_CHART
-} from "../constants/ChartType";
-import MyLineChart from "./charts/MyLineChart";
-import MyScatterChart from "./charts/MyScatterChart";
-import MyPieChart from "./charts/MyPieChart";
-import MyAreaChart from "./charts/MyAreaChart";
+import UniversalChart from "./charts/UniversalChart";
 import VisibleInputCustomLabelDialog from "../containers/VisibleInputCustomLabelDialog";
-import MyHorizontalBarChart from "./charts/MyHorizontalBarChart";
-
-const chartInsideRenderables = [
-    (<CartesianGrid key={"CHART INSIDE RENDERABLE 1"} strokeDasharray="3 3"/>),
-    (<Tooltip key={"CHART INSIDE RENDERABLE 2"}/>),
-    (<Legend key={"CHART INSIDE RENDERABLE 3"} verticalAlign="bottom" wrapperStyle={{lineHeight: '40px'}}/>),
-    (<ReferenceLine key={"CHART INSIDE RENDERABLE 4"} y={0} stroke='#000'/>)
-];
-
-const chartStandardProps = {
-    width: 800,
-    height: 300,
-    stackOffset: "sign",
-    margin: {top: 5, right: 30, left: 20, bottom: 5}
-};
 
 class AbstractChart extends Component {
     constructor(props) {
@@ -84,52 +56,6 @@ class AbstractChart extends Component {
         });
     }
 
-    getChartByType() {
-        return (
-            <MyLineChart options={this.props.dataSets}/>
-        );
-        switch(this.props.chartParams.type){
-            case LINE_CHART:
-                return (
-                    <MyLineChart chartParams={chartStandardProps} dataSets={this.props.dataSets}>
-                        {chartInsideRenderables}
-                    </MyLineChart>
-                );
-            case VERTICAL_BAR_CHART:
-                return (
-                    <MyVerticalBarChart chartParams={chartStandardProps} dataSets={this.props.dataSets}>
-                        {chartInsideRenderables}
-                    </MyVerticalBarChart>
-                );
-            case HORIZONTAL_BAR_CHART:
-                return (
-                    <MyHorizontalBarChart chartParams={chartStandardProps} dataSets={this.props.dataSets}>
-                        {chartInsideRenderables}
-                    </MyHorizontalBarChart>
-                );
-            case SCATTER_CHART:
-                return (
-                    <MyScatterChart chartParams={chartStandardProps}
-                                    dataSets={this.props.dataSets}
-                                    initLabelChange={(p, dsIndex, dIndex) => this.initLabelChange(p, dsIndex, dIndex)}>
-                        {chartInsideRenderables}
-                    </MyScatterChart>
-                );
-            case PIE_CHART:
-                return (
-                    <MyPieChart chartParams={chartStandardProps} dataSets={this.props.dataSets}/>
-                );
-            case AREA_CHART:
-                return (
-                    <MyAreaChart chartParams={chartStandardProps} dataSets={this.props.dataSets}>
-                        {chartInsideRenderables}
-                    </MyAreaChart>
-                );
-            default:
-                return [];
-        }
-    }
-
     render () {
         return (
             <div>
@@ -137,7 +63,7 @@ class AbstractChart extends Component {
                                                handleClose={()=>this.setState({labelChangeDialogOpen: false})}
                                                {...this.state.labelChangeInfo} />
                 {this.getTitleDomPart()}
-                {this.getChartByType()}
+                <UniversalChart options={this.props.dataSets}/>
             </div>
         );
     }
