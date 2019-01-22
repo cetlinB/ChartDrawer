@@ -38,11 +38,13 @@ class Application extends Component {
                                     <DownloadCsvContainer/>
                                 </li>
                                 <li className="nav-item m-1">
+                                    <a href="https://github.com/cetlinB/ChartDrawer/blob/master/user_manual.pdf">
                                     <Button variant="contained" component="span" color="default"
-                                        href="http://nonsensopedia.wikia.com/wiki/Gra:Gra"
+
                                     >
                                         Pomoc<span className="sr-only">(current)</span>
                                     </Button>
+                                    </a>
                                 </li>
                             </ul>
                         </Typography>
