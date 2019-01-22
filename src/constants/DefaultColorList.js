@@ -1,10 +1,11 @@
 export const DEFAULT_COLOR_LIST = [
-    "#F44336",
-    "#1565C0",
-    "#4CAF50",
-    "#FFEB3B",
-    "#4527A0",
-    "#FF9800",
-    "#80DEEA",
-    "#616161",
+    "#f41f14",
+    "#123ac0",
+    "#25af1b",
+    "#f7ff04",
+    "#5312c9",
+    "#ff8304",
+    "#6feae8",
+    "#ff10df",
+    "#ffffff"
 ];

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import VisibleDataSheet from "../containers/VisibleDataSheet";
-import VisibleFileReaderBtn from "../containers/VisibleFileReaderBtn";
-import VisibleFileDownloadLink from "../containers/VisibleFileDownloadLink";
-import VisibleChart from "../containers/VisibleChart";
-import VisibleUndoButton from "../containers/VisibleUndoButton";
-import VisibleRedoButton from "../containers/VisibleRedoButton";
+import DataSheetContainer from "../containers/DataSheetContainer";
+import UploadCsvFileContainer from "../containers/UploadCsvFileContainer";
+import DownloadCsvContainer from "../containers/DownloadCsvContainer";
+import ChartContainer from "../containers/ChartContainer";
+import UndoButtonContainer from "../containers/UndoButtonContainer";
+import RedoButtonContainer from "../containers/RedoButtonContainer";
 import Typography from "@material-ui/core/Typography/Typography";
 import AppBar from "@material-ui/core/AppBar/AppBar";
 import Toolbar from "@material-ui/core/Toolbar/Toolbar";
@@ -17,7 +17,7 @@ import "bootstrap/dist/js/bootstrap";
 import "../styles.css";
 
 
-class Layout extends Component {
+class Application extends Component {
     render() {
         return (
             <div id="app-content">
@@ -26,16 +26,16 @@ class Layout extends Component {
                         <Typography variant={"button"} color="inherit">
                             <ul className="nav navbar-nav-right">
                                 <li className="nav-item active m-1">
-                                    <VisibleUndoButton variant="contained" color="default">COFNIJ</VisibleUndoButton>
+                                    <UndoButtonContainer variant="contained" color="default">COFNIJ</UndoButtonContainer>
                                 </li>
                                 <li className="nav-item active m-1">
-                                    <VisibleRedoButton variant="contained" color="default">POWTÓRZ</VisibleRedoButton>
+                                    <RedoButtonContainer variant="contained" color="default">POWTÓRZ</RedoButtonContainer>
                                 </li>
                                 <li className="nav-item active m-1">
-                                    <VisibleFileReaderBtn/>
+                                    <UploadCsvFileContainer/>
                                 </li>
                                 <li className="nav-item active m-1">
-                                    <VisibleFileDownloadLink/>
+                                    <DownloadCsvContainer/>
                                 </li>
                                 <li className="nav-item active m-1">
                                     <Button variant="contained" component="span" color="default"
@@ -86,7 +86,7 @@ class Layout extends Component {
                                     <div className="bg-light w-75 overflow-auto mt-5 Content">
                                         <Paper elevation={8} className="paper m-3">
                                             <div className="pre-scrollable" width="20%">
-                                                <VisibleDataSheet/>
+                                                <DataSheetContainer/>
                                             </div>
                                         </Paper>
                                     </div>
@@ -97,7 +97,7 @@ class Layout extends Component {
                     <Grid item xs={7} className="HighChart">
                         <main >
                             <Paper elevation={4} className="paper h-auto "  >
-                                <VisibleChart/>
+                                <ChartContainer/>
                             </Paper>
                         </main>
                     </Grid>
@@ -107,4 +107,4 @@ class Layout extends Component {
     }
 }
 
-export default Layout;
+export default Application;

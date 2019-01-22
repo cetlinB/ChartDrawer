@@ -3,7 +3,7 @@ import Typography from "@material-ui/core/Typography/Typography";
 import FormControl from "@material-ui/core/FormControl/FormControl";
 import Input from "@material-ui/core/Input/Input";
 import UniversalChart from "./charts/UniversalChart";
-import VisibleInputCustomLabelDialog from "../containers/VisibleInputCustomLabelDialog";
+import InputDialogContainer from "../containers/InputDialogContainer";
 
 class AbstractChart extends Component {
     constructor(props) {
@@ -59,7 +59,7 @@ class AbstractChart extends Component {
     render () {
         return (
             <div>
-                <VisibleInputCustomLabelDialog open={this.state.labelChangeDialogOpen}
+                <InputDialogContainer open={this.state.labelChangeDialogOpen}
                                                handleClose={()=>this.setState({labelChangeDialogOpen: false})}
                                                {...this.state.labelChangeInfo} />
                 {this.getTitleDomPart()}

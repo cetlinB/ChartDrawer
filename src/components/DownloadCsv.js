@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {cellSeparator, rowSeparator} from "../constants/CsvSeparators";
 import Button from "@material-ui/core/Button";
 
-class FileDownloadLink extends Component {
+class DownloadCsv extends Component {
 
     encodeCSV() {
         let data = [];
@@ -45,4 +45,4 @@ class FileDownloadLink extends Component {
     }
 }
 
-export default FileDownloadLink;
+export default DownloadCsv;

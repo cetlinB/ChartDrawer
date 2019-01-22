@@ -26,7 +26,7 @@ class MyRemoveDataButton extends Component {
         )};
 }
 
-class MyDataSheet extends Component {
+class DataSheet extends Component {
 
     onCellsChanged(changes) {
         changes.forEach(({cell, row, col, value}) => {
@@ -148,7 +148,7 @@ class MyDataSheet extends Component {
     };
 }
 
-export default MyDataSheet;
+export default DataSheet;
 
 class LabelColorCell extends React.Component {
     render(){

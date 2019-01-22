@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {cellSeparator, rowSeparator} from "../constants/CsvSeparators";
 import Button from "@material-ui/core/Button";
 
-class FileReaderBtn extends Component {
+class ReadCsv extends Component {
     constructor(props) {
         super(props);
         this.fileInput = React.createRef();
@@ -65,4 +65,4 @@ class FileReaderBtn extends Component {
     }
 }
 
-export default FileReaderBtn;
+export default ReadCsv;

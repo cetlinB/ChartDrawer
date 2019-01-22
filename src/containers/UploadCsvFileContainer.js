@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import FileReaderBtn from "../components/FileReaderBtn";
+import ReadCsv from "../components/ReadCsv";
 import {setPureData} from "../actions/ChartActions";
 
 const mapStateToProps = (state, ownProps) => ({
@@ -13,4 +13,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(FileReaderBtn);
+)(ReadCsv);

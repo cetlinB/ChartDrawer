@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import MyDataSheet from "../components/MyDataSheet";
+import DataSheet from "../components/DataSheet";
 import {
     addNewEmptyDataSet,
     addNewEmptyDataToEverySet,
@@ -29,4 +29,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(MyDataSheet);
+)(DataSheet);

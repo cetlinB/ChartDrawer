@@ -8,7 +8,7 @@ import {
     HORIZONTAL_BAR_CHART
 } from "../constants/ChartType";
 import {setChartType} from "../actions/ChartActions";
-import Layout from "../components/Layout";
+import Application from "../components/Application";
 
 const mapStateToProps = (state, ownProps) => ({
     currentChartType: state.chart.present.type
@@ -26,4 +26,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Layout);
+)(Application);

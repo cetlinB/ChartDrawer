@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import FileDownloadLink from "../components/FileDownloadLink"
+import DownloadCsv from "../components/DownloadCsv"
 import {deepCopyObject} from "../utils/utils";
 
 const mapStateToProps = (state, ownProps) => ({
@@ -8,4 +8,4 @@ const mapStateToProps = (state, ownProps) => ({
 
 export default connect(
     mapStateToProps
-)(FileDownloadLink);
+)(DownloadCsv);

@@ -8,7 +8,7 @@ const getCurrentLabelText = label => label !== undefined && label.length > 2 ? l
 
 const createLabelByText = text => text.trim().length === 0 ? undefined : text + "\n⬇";
 
-class MyInputCustomLabelDialog extends React.Component {
+class BasicLabelDialog extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -50,4 +50,4 @@ class MyInputCustomLabelDialog extends React.Component {
 
 }
 
-export default MyInputCustomLabelDialog;
+export default BasicLabelDialog;

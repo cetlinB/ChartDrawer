@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import {setDataLabel} from "../actions/ChartActions";
-import MyInputCustomLabelDialog from "../components/MyInputCustomLabelDialog";
+import BasicLabelDialog from "../components/BasicLabelDialog";
 
 const mapStateToProps = (state, ownProps) => ({
 
@@ -13,4 +13,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(MyInputCustomLabelDialog);
+)(BasicLabelDialog);
