@@ -72,7 +72,6 @@ class DataSheet extends Component {
             grid = [[]];
         }
 
-        //COLOR ROW
         grid.push(
             this.props.dataSets.series.map( set => ({
                     component: (<button onClick={() => this.props.removeSeries(set.index)}>
@@ -86,7 +85,6 @@ class DataSheet extends Component {
             )
         );
 
-        //XY ROW
         grid.push([].concat(...this.props.dataSets.series.map( () => (
             [
                 {value: 'x', readOnly: true},
@@ -94,7 +92,6 @@ class DataSheet extends Component {
             ]
         ))));
 
-        //DATA
         for( let row = 0 ; row < rowPointLength ; row++ ){
             let pointRow = [];
 
@@ -109,7 +106,6 @@ class DataSheet extends Component {
             grid.push(pointRow);
         }
 
-        //ADD COLUMN BUTTON COLUMN
         grid[0].push({
             className: "cell-add-button",
             component: (<MyAddEmptyDataButton onClick={()=>this.props.addNewEmptyDataSet()}/>),
@@ -118,7 +114,6 @@ class DataSheet extends Component {
             rowSpan: rowPointLength + nonDataRows
         });
 
-        //ADD ROW BUTTON ROW
         grid.push([{
             className: "cell-add-button",
             component: (<MyAddEmptyDataButton onClick={()=>this.props.addNewEmptyDataToEverySet()} />),
